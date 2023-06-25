@@ -1,0 +1,16 @@
+---
+title: "R Project: Spaceship Titanic"
+output: html_notebook
+name: Patricia Jaquez 
+date: June 24, 2023
+---
+
+This I was an interesting dataset to work with seeing a different out take if we could fly into space and seeing what would make the differences.
+
+I decided to use pie charts for for the boolean columns. Seeing the difference of where passengers tended to lean towards to. Most passengers were not Vip. Also, only one third of the passengers chose to be put into Cryo sleep. Though, surprisingly fifty percent of passengers chose to be transported.
+
+Overall, it def was a cool different out take on Titanic. 
+
+
+
+

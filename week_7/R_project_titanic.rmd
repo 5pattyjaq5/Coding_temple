@@ -1,0 +1,136 @@
+---
+title: "Titanic Notebook"
+output: html_notebook
+---
+# Importing Imports
+```{r}
+#install.packages('tidyverse')
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+# bringing over dataset
+```{r}
+df <- read.csv("C:/Users/patty/OneDrive/Desktop/R_project/train (2).csv")
+df
+```
+
+checking for null values in the data
+```{r}
+# Using tidyR
+df %>% summarize(na_count = sum(is.na(df)))
+
+# Using base R:
+colSums(is.na(df))
+```
+
+#filling in those null values 
+
+#filling in null values per column
+```{r}
+df$Age[is.na(df$Age)] <- mean(df$Age, na.rm= TRUE)
+```
+
+```{r}
+df$RoomService[is.na(df$RoomService)] <- mean(df$RoomService, na.rm= TRUE)
+```
+
+```{r}
+df$FoodCourt[is.na(df$FoodCourt)] <- mean(df$FoodCourt, na.rm= TRUE)
+```
+
+```{r}
+df$ShoppingMall[is.na(df$ShoppingMall)] <- mean(df$ShoppingMall, na.rm= TRUE)
+```
+
+```{r}
+df$Spa[is.na(df$Spa)] <- mean(df$Spa, na.rm= TRUE)
+```
+
+```{r}
+df$VRDeck[is.na(df$VRDeck)] <- mean(df$VRDeck, na.rm= TRUE)
+```
+
+# recheking for null values / Making sure data is complete 
+
+```{r}
+# Using tidyR
+df %>% summarize(na_count = sum(is.na(df)))
+
+# Using base R:
+colSums(is.na(df))
+```
+
+
+
+
+
+
+
+
+# creating visuals
+
+```{r}
+#age_df <- filter.data.frame(df, age=='0-10' | age=='11-19' | age=='20-29' | age=='30-39')- didnt work 
+```
+
+# finding out how many passengers are VIP
+```{r}
+Vip <- df$VIP
+counts<-table(Vip)
+```
+
+
+```{r}
+pie(counts, labels = names(counts))
+colors <- c("black", "yellow", "orange")
+pie(counts, names = names, col = colors, main = "Passengers that are vip")
+```
+# False means most of the passengers were not VIP
+
+# # Finding out how many Passengers chose to sleep during their voyage 
+```{r}
+CryoSleep <- df$CryoSleep
+counts <- table(CryoSleep)
+```
+
+
+```{r}
+pie(counts, labels = names(counts))
+colors <- c("blue", "green", "red")
+pie(counts, names = names, col = colors, main = "Passengers that chose to sleep")
+```
+
+```{r}
+x <- df('age')
+y <- df('cryosleep')
+plot(x, y, main = "Correlation between cryosleep and age", xlab = "X", ylab = "Y")
+```
+
+
+```{r}
+qplot(log(ShoppingMall), log(Spa), data = df)
+```
+
+```{r}
+# Creates the histogram
+qplot(Age, data=df, binwidth=100) + 
+  # Creates the titles and axis labels
+  labs(x='Age', y = 'CryoSleep', title = 'CryoSleep / Age')+
+  # Adjusts the title positioning
+  theme(plot.title = element_text(hjust=0.5))
+```
+# creating a pie chart of those Passengers that chose to be transported 
+```{r}
+Transported <- df$Transported
+counts<-table(Transported)
+```
+
+```{r}
+pie(counts, labels = names(counts))
+colors <- c("blue", "pink")
+pie(counts, names = names, col = colors, main = "Pie chart of Passengers that chose to be Transported")
+```
+# It seems to be that it was a 50 / 50. Half of the passengers chose to be transported and the others didn't
+
+
